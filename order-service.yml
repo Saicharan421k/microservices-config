@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  datasource:
+    url: jdbc:postgresql://<YOUR_RDS_ENDPOINT>:5432/postgres?currentSchema=order_schema
+    username: <YOUR_DB_USERNAME>
+    password: <YOUR_DB_PASSWORD>
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+# Configuration for Feign Client to call Product Service
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000

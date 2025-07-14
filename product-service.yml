@@ -2,9 +2,9 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://<YOUR_RDS_ENDPOINT>:5432/postgres?currentSchema=product_schema
-    username: <YOUR_DB_USERNAME>
-    password: <YOUR_DB_PASSWORD>
+    url: jdbc:postgresql://microservices-db.c2hcw4woa2eq.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=product_schema
+    username: postgres
+    password: Pscr78k94k21k
   jpa:
     hibernate:
       ddl-auto: update

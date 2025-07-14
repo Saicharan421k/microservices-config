@@ -1,0 +1,15 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:postgresql://<YOUR_RDS_ENDPOINT>:5432/postgres?currentSchema=product_schema
+    username: <YOUR_DB_USERNAME>
+    password: <YOUR_DB_PASSWORD>
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka

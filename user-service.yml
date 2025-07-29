@@ -1,17 +1,18 @@
 server:
-  port: 8081 # Each service will have a different internal port
+  port: 8081
 spring:
   datasource:
     url: jdbc:postgresql://microservices-db.c2hcw4woa2eq.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=user_schema
     username: postgres
     password: Pscr78k94k21k
+    # ADDED: The critical line that explicitly tells Spring which driver to use.
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update # Automatically updates the database schema
+      # This is the only schema management we need.
+      ddl-auto: update
     show-sql: true
-  sql:
-    init:
-      schema-locations: classpath:schema.sql
+# REMOVED: The entire sql.init block to prevent conflicts.
 eureka:
   client:
     service-url:

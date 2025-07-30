@@ -1,6 +1,10 @@
 server:
   port: 8081
+
 spring:
+  application:
+    # We will now get the name from the config, not the docker-compose file.
+    name: user-service
   datasource:
     url: jdbc:postgresql://microservices-db.c2hcw4woa2eq.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=user_schema
     username: postgres
@@ -10,7 +14,21 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka
+    # --- ADDED: The resiliency configuration block ---
+    # Keep trying to register even if it fails at first.
+    register-with-eureka: true
+    fetch-registry: true
+    # How often to send a heartbeat (in seconds)
+    lease-renewal-interval-in-seconds: 5
+    # How long the server waits for a heartbeat before expiring the lease (in seconds)
+    lease-expiration-duration-in-seconds: 10
+  instance:
+    # How often this instance sends its info to the server (in seconds)
+    lease-renewal-interval-in-seconds: 5
+    # The initial delay before the first registration (in seconds)
+    initial-status: STARTING
